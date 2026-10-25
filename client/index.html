@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1020" />
+    <meta name="description" content="TAVI – Talkative Vision. Giving sight a voice." />
+    <meta name="author" content="Aryan Nandu" />
+    <meta name="copyright" content="© 2025 Aryan Nandu. All rights reserved." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>TAVI – Talkative Vision</title>
+  </head>
+  <body>
+    <div class="backdrop" aria-hidden="true"></div>
+
+    <main id="start-screen" class="start-screen">
+      <div class="hero-mark" aria-hidden="true">
+        <span class="ring ring-1"></span>
+        <span class="ring ring-2"></span>
+        <svg viewBox="0 0 120 120" class="mark">
+          <path d="M60 32C34 32 16 60 16 60s18 28 44 28 44-28 44-28-18-28-44-28z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" />
+          <circle cx="60" cy="60" r="13" fill="currentColor" />
+        </svg>
+      </div>
+      <h1 class="logo">TAVI</h1>
+      <p class="tagline">Talkative Vision</p>
+      <p class="slogan">Giving sight a voice.</p>
+
+      <ul class="features" aria-label="What TAVI can do">
+        <li><span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span>Describe</span></li>
+        <li><span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"/><path d="M22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"/></svg></span><span>Read text</span></li>
+        <li><span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 8-2 6-6 2 2-6z"/></svg></span><span>Guide</span></li>
+      </ul>
+
+      <p class="hint">
+        <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></span>
+        Connect your AirPods or headphones, then start. TAVI will ask to use your camera and microphone.
+      </p>
+      <button id="start" class="start-button" type="button" autofocus>
+        <span>Start TAVI</span>
+      </button>
+      <p id="start-error" class="start-error" role="alert"></p>
+
+      <footer class="footer">© 2025 Aryan Nandu. All rights reserved.</footer>
+    </main>
+
+    <main id="app" class="app" hidden>
+      <header class="topbar">
+        <div class="brand-wrap">
+          <svg viewBox="0 0 120 120" class="brand-mark" aria-hidden="true">
+            <path d="M60 32C34 32 16 60 16 60s18 28 44 28 44-28 44-28-18-28-44-28z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round" />
+            <circle cx="60" cy="60" r="14" fill="currentColor" />
+          </svg>
+          <h1 class="brand">TAVI</h1>
+        </div>
+        <span id="provider" class="provider" aria-label="Vision model"></span>
+      </header>
+
+      <button id="viewfinder" class="viewfinder" type="button" aria-label="Describe what's in front of me">
+        <video id="video" aria-hidden="true" playsinline muted></video>
+        <span class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="scanline" aria-hidden="true"></span>
+        <span class="viewfinder-hint" aria-hidden="true">Tap anywhere to describe</span>
+      </button>
+
+      <section class="answer" aria-label="TAVI's answer">
+        <div class="status-chip">
+          <span class="status-dot" aria-hidden="true"></span>
+          <p id="status" class="status" role="status" aria-live="polite">Ready</p>
+        </div>
+        <p id="response" class="response" aria-live="off"></p>
+      </section>
+
+      <nav class="controls" aria-label="TAVI controls">
+        <div class="actions">
+          <button type="button" class="ctrl primary" data-mode="describe">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="lbl">Describe <kbd>D</kbd></span>
+          </button>
+          <button type="button" class="ctrl primary" data-mode="read">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"/><path d="M22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"/></svg></span><span class="lbl">Read text <kbd>R</kbd></span>
+          </button>
+          <button type="button" class="ctrl primary" data-mode="navigate">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="m9 21 3-7 3 3v4"/><path d="M6 12l3-4 4-1 3 4 3 1"/><path d="m12 14-1-5"/></svg></span><span class="lbl">Is the path clear? <kbd>P</kbd></span>
+          </button>
+          <button type="button" class="ctrl primary" id="btn-ask">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v4"/></svg></span><span class="lbl">Ask a question <kbd>A</kbd></span>
+          </button>
+        </div>
+        <div class="toggles">
+          <button type="button" class="ctrl toggle" id="btn-guide" aria-pressed="false">
+            <span class="switch" aria-hidden="true"></span><span class="lbl">Guide me <kbd>G</kbd></span>
+          </button>
+          <button type="button" class="ctrl toggle" id="btn-handsfree" aria-pressed="false">
+            <span class="switch" aria-hidden="true"></span><span class="lbl">Hands-free “Hey Tavi”</span>
+          </button>
+        </div>
+        <div class="utility">
+          <button type="button" class="ctrl" id="btn-repeat"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span>Repeat</button>
+          <button type="button" class="ctrl danger" id="btn-stop"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></span>Stop <kbd>Esc</kbd></button>
+        </div>
+      </nav>
+
+      <details class="settings">
+        <summary>Settings</summary>
+        <label>
+          <span>Speech speed <output id="rate-value" for="rate"></output></span>
+          <input id="rate" type="range" min="0.7" max="1.8" step="0.05" />
+        </label>
+        <label>
+          Guide mode updates every
+          <select id="interval">
+            <option value="4">4 seconds</option>
+            <option value="6">6 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="15">15 seconds</option>
+          </select>
+        </label>
+        <label class="checkbox">
+          <input id="voice-output" type="checkbox" />
+          Speak answers with TAVI's voice (turn off to use your screen reader instead)
+        </label>
+        <p class="model-info">Vision model: <span id="model-chain">checking…</span></p>
+        <button type="button" class="ctrl" id="btn-help">What can I say?</button>
+      </details>
+
+      <footer class="footer">© 2025 Aryan Nandu. All rights reserved.</footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
